@@ -13,13 +13,10 @@ void *parse_arguments(int argc, char *argv[]) {
 		
 	// Checking if no arguments were passed
 	if (argc < 2) {
-		printf("Parameters are:\n -i: IP address to scan \n -p: \"x:y\" 
-						port(s) to scan \n -o: file path to write to\n");
+		printf("Parameters are:\n -i: IP address to scan \n -p: \"x:y\"port(s) to scan\n"); 
+		printf("-o: file path to write to\n");
 	}
 	else {
-		// Checking if the -p flag is used
-		bool specified_range = 0;
-
 		// IP address is necessary
 		if (strcmp(argv[1], "-i") == 0) {
 			arguments = malloc(sizeof(Argument));
@@ -33,7 +30,6 @@ void *parse_arguments(int argc, char *argv[]) {
 			char *token = strtok(argv[4], ":");
 			int port_min;
 			int port_max;
-			specified_range = 1;
 			
 			// Getting the integers for the range
 			if (token) {
@@ -56,7 +52,7 @@ void *parse_arguments(int argc, char *argv[]) {
 		
 		// Checking if a file will be written to
 		if ((argc > 5 && strcmp(argv[5], "-o") == 0) || 
-						((!specified_range && argc > 3) && strcmp(argv[3], "-o")) == 0) {
+						(argc > 3 && strcmp(argv[3], "-o")) == 0) {
 			arguments->file = malloc(strlen(argv[6]) + 1);
 			strcpy(arguments->file, argv[6]);
 		}
