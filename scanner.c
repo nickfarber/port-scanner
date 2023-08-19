@@ -61,14 +61,15 @@ int main(int argc, char *argv[]) {
 	Scan_info *port_thread;
 	// Checking if the arguments were acceptible
 	if (args) {
+		pthread_t threads[65536];	
 		// Creating and running all threads
 		for (int i = args->min_port; i <= args->max_port; i++) {
-			pthread_t thread_id = i;
 			port_thread = malloc(sizeof(Scan_info));
 			port_thread->ip = malloc(strlen(args->ip) + 1);
 			strcpy(port_thread->ip, args->ip);
 			port_thread->port = i;
-			pthread_create(&thread_id, NULL, scanner, port_thread);
+			threads[i] = i;
+			pthread_create(&threads[i], NULL, scanner, port_thread);
 		}
 		
 		if (args->file != NULL) 
@@ -77,9 +78,9 @@ int main(int argc, char *argv[]) {
 		// Closing all threads
 		for (int i = args->min_port; i <= args->max_port; i++) {
 			void *ret_val = 0;
-			pthread_t thread_id = i;
+			// pthread_t thread_id = i;
 			int *outcome = 0;
-			pthread_join(thread_id, &ret_val);
+			pthread_join(threads[i], &ret_val);
 			
 			outcome = ret_val;
 			
