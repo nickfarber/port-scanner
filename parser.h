@@ -1,4 +1,4 @@
-struct {
+typedef struct {
 	char *ip;
 	int min_port;
 	int max_port;
