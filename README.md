@@ -6,7 +6,7 @@ It accepts 3 arguments:
 
 -i: specifies the ipv4 address to scan (required)
 
--p: specifies the range of ports that should be scanned; formatted like "min:max" or just "port" (optional - defaults to all ports)
+-p: specifies the range of ports that should be scanned; formatted like "min_port:max_port" or just "port" 
 
 -o: the path of the file to output to if not the terminal (optional - defaults to stdout)
 
