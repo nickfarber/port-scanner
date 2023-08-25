@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
 		
 		// Closing all threads
 		for (int i = args->min_port; i <= args->max_port; i++) {
-			void *ret_val = 0;
+			void *ret_val;
 			// pthread_t thread_id = i;
 			int *outcome = 0;
 			pthread_join(threads[i], &ret_val);
